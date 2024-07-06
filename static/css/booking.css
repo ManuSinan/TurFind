@@ -1,0 +1,182 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: fixed;
+}
+
+.nav-bar {
+    background-color: #003580;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.home-link {
+    margin-right: 70px;
+}
+
+.home-link img {
+    height: 60px;
+    width: auto;
+}
+
+.logo {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 60px;
+}
+
+.container {
+    width: 50%;
+    margin: 20px auto 0;
+    padding: 10px;
+}
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.turfind-heading {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.turfind-v6-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.turfind-form {
+    width: 100%;
+}
+
+.form-register {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-total h2 {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #003580;
+    border-radius: 50%;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.step-text {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.inner {
+    margin-top: 30px;
+}
+
+.form-heading {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-heading h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-holder {
+    width: 48%;
+}
+
+.form-row-inner {
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.label {
+    position: absolute;
+    top: -18px;
+    left: 10px;
+    background-color: #fff;
+    padding: -5px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.special-label-1 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.select-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #003580;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #003580;
+}
+
+.form-images img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}

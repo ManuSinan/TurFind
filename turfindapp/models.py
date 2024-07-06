@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class LoginUser(AbstractUser):
     status_choices = (
@@ -10,12 +10,11 @@ class LoginUser(AbstractUser):
     user_type = models.CharField(max_length=50)
 
 class User(models.Model):
-    User_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
+    login_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=20)
     email = models.EmailField()
     phone = models.IntegerField()
     password = models.CharField(max_length=30)
-
     def __str__(self):
         return self.user_name
 
@@ -54,7 +53,7 @@ class Booking(models.Model):
     transaction_id = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return f'Booking {self.booking_id} by {self.login_user.username} on {self.book_date}'
+        return f'Booking {self.booking_id} by {self.login_user.user_name} on {self.book_date}'
 
 
 class Review(models.Model):

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TurFind</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<form action="booking" method="post">
+        {% csrf_token %}
+    <nav class="nav-bar">
+        <div class="logo">
+            <h1>Turfind.com</h1>
+        </div>
+        <a href="/" class="home-link">
+            <img src="{% static 'images/homelogo.png' %}" alt="Home">
+        </a>
+    </nav>
+    <div class="page-content">
+        <div class="turfind-v6-content">
+            <div class="turfind-form">
+                <form class="form-register" id="form-register" action="" method="post">
+                    <div id="form-total">
+                        <section>
+                            <div class="inner">
+                                <div class="form-heading">
+                                    <h3>Booking Turf</h3>
+                                </div>
+                                <div class="form-images">
+                                    <img src="{% static 'images/bookingimg.JPEG' %}" alt="Turf Image">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label for="room" class="special-label-1">Choose a Turf</label>
+                                        <select name="room" id="room" class="form-control">
+                                            <option value="Old Trafford">Old Trafford</option>
+                                            <option value="Emirates Arena">Emirates Arena</option>
+                                            <option value="Alub-De-Anfield">Club-De-Anfield</option>
+                                            <option value="Emadi Soccer Accadamy">Emadi Soccer Accadamy</option>
+                                            <option value="CampNou">CampNou</option>
+                                            <option value="Santiago Bernabéu">Santiago Bernabéu</option>
+                                            <option value="Allianz Arena">Allianz Arena</option>
+                                            <option value="Maracanã">Maracanã</option>
+                                        </select>
+                                        <span class="select-btn">
+                                            <i class="zmdi zmdi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder">
+                                        <label for="day" class="special-label-1">Booking Day</label>
+                                        <input type="date" name="day" class="form-control" id="day">
+                                    </div>
+                                    <div class="form-holder">
+                                        <label for="time" class="special-label-1">Booking Hour</label>
+                                        <select name="time" id="time" class="form-control">
+                                            <option value="12:00 AM - 01:00 AM">12:00 AM - 01:00 AM</option>
+                                            <option value="01:00 AM - 02:00 AM">01:00 AM - 02:00 AM</option>
+                                            <option value="02:00 AM - 03:00 AM">02:00 AM - 03:00 AM</option>
+                                            <option value="03:00 AM - 04:00 AM">03:00 AM - 04:00 AM</option>
+                                            <option value="04:00 AM - 05:00 AM">04:00 AM - 05:00 AM</option>
+                                            <option value="05:00 AM - 06:00 AM">05:00 AM - 06:00 AM</option>
+                                            <option value="06:00 AM - 07:00 AM">06:00 AM - 07:00 AM</option>
+                                            <option value="07:00 AM - 08:00 AM">07:00 AM - 08:00 AM</option>
+                                            <option value="08:00 AM - 09:00 AM">08:00 AM - 09:00 AM</option>
+                                            <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                                            <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                                            <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                                            <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+                                            <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+                                            <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                                            <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                                            <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                                            <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                                            <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
+                                            <option value="07:00 PM - 08:00 PM">07:00 PM - 08:00 PM</option>
+                                            <option value="08:00 PM - 09:00 PM">08:00 PM - 09:00 PM</option>
+                                            <option value="09:00 PM - 10:00 PM">09:00 PM - 10:00 PM</option>
+                                            <option value="10:00 PM - 11:00 PM">10:00 PM - 11:00 PM</option>
+                                            <option value="11:00 PM - 12:00 AM">11:00 PM - 12:00 AM</option>
+                                        </select>
+                                        <span class="select-btn">
+                                            <i class="zmdi zmdi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="button-container">
+                            <button type="button">Skip</button>
+                            <button type="button">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

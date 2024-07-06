@@ -20,8 +20,13 @@ from turfindapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",views.login),
-    path("reg.user",views.register_user),
-    path("reg.turfowner",views.register_turf_owner),
+    path("",views.home),
+    path("login",views.login),
+    path("reguser",views.reguser),
+    path("regturfowner",views.regturfowner),
+    path("profile",views.profile,name="profile"),
+    path("booking",views.booking),
+    path("rehome",views.homeagain),
+
 
 ]

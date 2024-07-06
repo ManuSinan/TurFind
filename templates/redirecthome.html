@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turfind.com</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/homeagain.css' %}">
+</head>
+<body>
+        <nav class="nav-bar">
+            <div class="logo">
+                <h1>Turfind.com</h1>
+            </div>
+            <div class="dropdown">
+              <button><b>Menu</b></button>
+              <div class="dropdown-content">
+                <a href="{% url 'profile' %}"><b>Profile</b></a>
+                <a href="booking"><b>About</b></a>
+                <a href=""><b>Help</b></a>
+                <a href="#"><b>Logout</b></a>
+              </div>
+            </div>
+        </nav>
+        <form action="" >
+        <div class="search-bar-container">
+            <div class="search-bar">
+                <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
+                <input type="text" placeholder="">
+                <button>Search</button>
+            </div>
+        </div>
+        </form>
+
+       <h1 class="explore-heading">EXPLORE ICONIC FOOTBALL STADIUMS AROUND THE WORLD</h1>
+    <section class="content">
+        <div class="turf-card">
+            <img src="{% static 'images/bernabeu 2.JPEG' %}" alt="Santiago Bernabéu">
+            <div class="turf-info">
+                <h3>Santiago Bernabéu</h3>
+                <p>Santiago Bernabéu offers players a chance to experience its iconic atmosphere.</p>
+                <p class="price">$100 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/oldtrafford.JPEG' %}" alt="Old Trafford">
+            <div class="turf-info">
+                <h3>Old Trafford</h3>
+                <p>Old Trafford stadium turf offers players an immersive experience in a renowned football venue.</p>
+                <p class="price">$120 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/campnou.JPEG' %}" alt="Camp Nou">
+            <div class="turf-info">
+                <h3>Camp Nou</h3>
+                <p>Camp Nou stadium turf provides players with an authentic setting to enjoy football matches.</p>
+                <p class="price">$80 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/allianz.JPEG' %}" alt="Allianz Arena">
+            <div class="turf-info">
+                <h3>Allianz Arena</h3>
+                <p>Allianz Arena's turf allows players to experience the distinctive ambiance of FC Bayern Munich's home ground.</p>
+                <p class="price">$90 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/anfield.JPEG' %}" alt="Anfield">
+            <div class="turf-info">
+                <h3>Anfield</h3>
+                <p>Anfield stadium's turf provides an immersive football experience, capturing the essence of Liverpool FC's historic venue.</p>
+                <p class="price">$100 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/Manchester_city_etihad_stadium_(cropped).jpg' %}" alt="Etihad Stadium">
+            <div class="turf-info">
+                <h3>Etihad Stadium</h3>
+                <p>The Etihad Stadium turf offers players a chance to play in the home of Manchester City FC.</p>
+                <p class="price">$80 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/wembley.png' %}" alt="Wembley Stadium">
+            <div class="turf-info">
+                <h3>Wembley Stadium</h3>
+                <p>Wembley stadium turf provides players with an authentic setting to enjoy football matches.</p>
+                <p class="price">$80 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/ems.jpg' %}" alt="EMS Stadium">
+            <div class="turf-info">
+                <h3>EMS Stadium</h3>
+                <p>EMS Stadium also provides an 11-a-side ground for players to have a better playing experience.</p>
+                <p class="price">$60 per hour</p>
+            </div>
+        </div>
+    </section>
+
+    <h1 class="explore-heading">ECONOMICAL GRASS CHOICES FOR YOUR LANDSCAPE</h1>
+    <section class="content">
+        <div class="turf-card">
+            <img src="{% static 'images/clubanfield.JPEG' %}" alt="Club-De-Anfield">
+            <div class="turf-info">
+                <h3>Club-De-Anfield</h3>
+                <p>Club-De-Anfield nestled in the heart of Koduvally is a charming football ground that exudes the beautiful game.</p>
+                <p class="price">$10 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/The Arena @ Keat Hong.jpg' %}" alt="The Arena">
+            <div class="turf-info">
+                <h3>The Arena</h3>
+                <p>The Arena in Kattangal is known for its well-maintained surface, perfect for football enthusiasts in the area.</p>
+                <p class="price">$10 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/emadi.jpg' %}" alt="Emadi Soccer">
+            <div class="turf-info">
+                <h3>Emadi Soccer</h3>
+                <p>Emadi Turf, located in Koduvally, boasts a meticulously manicured playing surface ideal for local football enthusiasts.</p>
+                <p class="price">$10 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/Schools-8.jpg' %}" alt="Sports Court">
+            <div class="turf-info">
+                <h3>Sports Court</h3>
+                <p>The sports court in Omassery stands as the busiest and most vibrant ground.</p>
+                <p class="price">$10 per hour</p>
+            </div>
+        </div>
+    </section>
+
+    <h1 class="explore-heading">BOOK YOUR 11-A-SIDE TURF GROUND WITH TURFIND</h1>
+    <section class="content">
+        <div class="turf-card">
+            <img src="{% static 'images/7sground.jpg' %}" alt="Emerald Arena">
+            <div class="turf-info">
+                <h3>Emerald Arena</h3>
+                <p>Emerald Arena is a premier 11-a-side football turf that provides an exceptional playing experience.</p>
+                <p class="price">$25 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/11s.jpg' %}" alt="Champions Park Turf">
+            <div class="turf-info">
+                <h3>Champions Park Turf</h3>
+                <p>Champions Park Turf is an exquisite 11-a-side football turf located adjacent to the bustling Hilite Mall.</p>
+                <p class="price">$20 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/elite.jpg' %}" alt="Elite Eleven Turf">
+            <div class="turf-info">
+                <h3>Elite Eleven Turf</h3>
+                <p>Elite Eleven Turf stands out as the most highly rated 11-a-side football ground in the region.</p>
+                <p class="price">$15 per hour</p>
+            </div>
+        </div>
+        <div class="turf-card">
+            <img src="{% static 'images/1.JPEG' %}" alt="Prime Play Arena">
+            <div class="turf-info">
+                <h3>Prime Play Arena</h3>
+                <p>Prime Play Arena is renowned as the busiest and most sought-after 11-a-side football turf in the area.</p>
+                <p class="price">$20 per hour</p>
+            </div>
+        </div>
+    </section>
+    <div class="add-turf-box">
+    <img src="{% static 'images/footballer-removebg-preview.png' %}" alt="Turf Image" class="add-turf-image">
+        <div class="caption"><b>Reserve your spot on the grassy field of champions - add your turf here!  </b></div>
+
+    <button class="add-turf-button"><b>Add Turf</b></button>
+</div>
+    <footer class="footer">
+        <div class="social-media">
+            <a href="#" target="_blank"><img src="{% static 'images/INSTTTA.png' %}" alt="Instagram" width="24" height="24"></a>
+            <a href="#" target="_blank"><img src="{% static 'images/fblogo-removebg-preview.png' %}" alt="Facebook" width="24" height="24"></a>
+            <a href="#" target="_blank"><img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" width="24" height="24"></a>
+        </div>
+        <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Terms and Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p>&copy; 2024 Turfind.com</p>
+    </footer>
+</body>
+</html>
