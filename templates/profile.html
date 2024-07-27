@@ -13,7 +13,7 @@
         {% csrf_token %}
         <nav class="nav-bar">
             <div class="logo">
-                <h1>Turfind.com</h1>
+                <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
             </div>
             <a href="rehome" class="home-link">
                 <img src="{% static 'images/homelogo.png' %}" alt="Home">
@@ -32,17 +32,17 @@
             </div>
             <div class="item">
                 <span class="label">Phone number</span>
-                <input type="tel" class="value" name="phone_no" value="{{ data.phone_no }}">
+                <input type="tel" class="value" name="phone_no" value="{{ data.phone }}">
             </div>
             <div class="item">
                 <span class="label">Date of birth</span>
-                <input type="date" class="value" name="date_of_birth" value="{{ data.date_of_birth }}">
+                <input type="date" class="value" name="date_of_birth" value="{{ data.date_of_birth|default_if_none:'' }}">
             </div>
             <div class="item">
                 <span class="label">Gender</span>
                 <select class="value" name="gender">
-                    <option value="male" {% if data.gender == 'male' %}selected{% endif %}>Male</option>
-                    <option value="female" {% if data.gender == 'female' %}selected{% endif %}>Female</option>
+                    <option value="Male" {% if data.gender == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if data.gender == 'Female' %}selected{% endif %}>Female</option>
                 </select>
             </div>
 

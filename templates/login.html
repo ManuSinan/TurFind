@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -12,7 +13,7 @@
         {% csrf_token %}
     <nav class="nav-bar">
         <div class="logo">
-            <h1>Turfind.com</h1>
+            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
         </div>
         <a href="/" class="home-link">
             <img src="{% static 'images/homelogo.png' %}" alt="Home">
@@ -31,8 +32,8 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit">Login</button>
-            </form>
-                <p>Don't have an account? <a href='reguser'>Sign up</a></p>
+            </form> <br>
+                <p class="login-prompt">Don't have an account? <a href="reguser">Sign up</a></p>
         </div>
     </div>
     <footer class="footer">

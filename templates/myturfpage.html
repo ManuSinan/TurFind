@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turfind.com</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/myturfpage.css' %}">
+</head>
+<body>
+        <nav class="nav-bar">
+            <div class="logo">
+                <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+            </div>
+            <div class="dropdown">
+              <button><b>Menu</b></button>
+              <div class="dropdown-content">
+                <a href="profile"><b>Profile</b></a>
+                <a href="booking"><b>About</b></a>
+                <a href=""><b>Help</b></a>
+                <a href="#"><b>Logout</b></a>
+              </div>
+            </div>
+        </nav>
+        <form action="turflist" method="post">
+            {% csrf_token %}
+            <div class="search-bar-container">
+            <div class="search-bar">
+                <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
+                <input type="text" placeholder="">
+                <button>Search</button>
+            </div>
+        </div>
+        </form>
+
+       <h1 class="explore-heading">TURF LIST</h1>
+    <section class="content">
+        {% for turf in turfs %}
+        <div class="turf-card">
+            <img src="{{ turf.image.url }}" alt="{{ turf.name }}">
+            <div class="turf-info">
+                <h3>{{ turf.turf_name }}</h3>
+                <p>{{ turf.details }}</p>
+                <p class="price">${{ turf.price }} per hour</p>
+                <a href="editurf" class="edit-button" style="text-decoration: none;"><b>Edit</b></a>
+
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+    <footer class="footer">
+        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,245 @@
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.nav-bar {
+    background-color: #002355;
+    width: 100%;
+    padding: 30px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+.logo img {
+    height: 46px;
+    width: auto;
+    }
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown button {
+  background-color: #6b61ff6f;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.dropdown button:hover {
+  background-color: #ffffff62;
+}
+.dropdown-content {
+  position: absolute;
+  top: 50px;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 20px;
+  display: none;
+}
+
+.dropdown-content a {
+  color: #333;
+  font-size: 12px;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: block;
+}
+
+ .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+ .dropdown:hover.dropdown-content {
+    display: block;
+  }
+
+ .dropdown button:focus +.dropdown-content {
+    display: block;
+  }
+
+        .search-bar-container {
+            display: flex;
+            justify-content: center;
+            margin-top: -25px;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1em;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            width: 50%;
+        }
+
+        .search-bar input, .search-bar select {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 50%;
+        }
+        .search-bar img {
+            max-width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #006ce7;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0091ff;
+        }
+
+.explore-heading {
+            font-size: 18px;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: #003580;
+            font-weight: bold;
+            padding-left: 30px;
+            border-left: 5px solid #006ce7;
+        }
+
+        .content {
+            padding: 2em;
+        }
+.turf-card {
+    position: relative;
+    display: flex;
+    margin: 50px auto;
+    width: 70%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.turf-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-7px);
+}
+
+.turf-card img {
+    width: 20%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+}
+
+.turf-info {
+    padding: 20px;
+    flex: 1;
+}
+
+.turf-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.turf-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+.turf-info .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+.turf-info .edit-button {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #00378a;
+    color: white;
+    border: none;
+    padding: 5px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.turf-info .edit-button:hover {
+    background-color: #00378ad4;
+}
+
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #002355;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #003580;
+}
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer li {
+    margin: 10px;
+}
+
+.footer a:hover {
+    color: #0056b3;
+    transition: 0.3s;
+}
+
+.footer li:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 5px;
+    transition: 0.3s;
+}

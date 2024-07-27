@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Turf</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/editurf.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <form action="editurf" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <nav class="nav-bar">
+            <div class="logo">
+                <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+            </div>
+            <a href="rehome" class="home-link">
+                <img src="{% static 'images/homelogo.png' %}" alt="Home">
+            </a>
+        </nav>
+        <br> <br>
+        <div class="container">
+            <h2>Edit Turf</h2>
+            <div class="item">
+                <span class="label">Turf Name</span>
+                <input type="text" class="value" id="turf_name" name="turf_name" value="{{ turf.turf_name }}">
+            </div>
+            <div class="item">
+                <span class="label">Price</span>
+                <input type="text" class="value" id="price" name="price" value="{{ turf.price }}">
+            </div>
+            <div class="item">
+                <span class="label">Details</span>
+                <input type="text" class="value" id="details" name="details" value="{{ turf.details }}">
+            </div>
+            <div class="item">
+                <span class="label">Location</span>
+                <input type="text" class="value" id="location" name="location" value="{{ turf.location }}">
+            </div>
+            <div class="item">
+                <span class="label">New Image</span>
+                <input type="file" class="value" id="image" name="image">
+            </div>
+
+            <button type="submit" class="submit-button">Save Changes</button>
+        </div>
+    </form>
+    <footer class="footer">
+        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
+    </footer>
+</body>
+</html>

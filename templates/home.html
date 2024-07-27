@@ -1,187 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turfind.com</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        <nav class="nav-bar">
-            <div class="logo">
-                <h1>Turfind.com</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="reguser" class="btn signup-btn">Sign Up</a></li>
-                <li><a href="login" class="btn login-btn">Log In</a></li>
-            </ul>
-        </nav>
-    </form>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TurFind</title>
+  {% load static %}
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <div class="search-bar-container">
-        <div class="search-bar">
-            <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
-            <input type="text" placeholder="Search...">
-            <button type="submit">Search</button>
-        </div>
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="{% static 'images/finalturf.PNG' %}" type="image/x-icon">
+<link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+<link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72.png' %}">
+<link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114.png' %}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="{% static 'css/home.css' %}">
+<link href="{% static 'https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700' %}" rel="stylesheet">
+<link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' %}" rel="stylesheet">
+<link href="{% static 'https://fonts.googleapis.com/css?family=Rochester' %}" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="{% static 'https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js' %}"></script>
+      <script src="{% static 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script>
+    <![endif]-->
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<form action="" method="post">
+        {% csrf_token %}
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
     </div>
 
-    <h1 class="explore-heading">EXPLORE ICONIC FOOTBALL STADIUMS AROUND THE WORLD</h1>
-    <section class="content">
-        <div class="turf-card">
-            <img src="{% static 'images/bernabeu 2.JPEG' %}" alt="Santiago Bernabéu">
-            <div class="turf-info">
-                <h3>Santiago Bernabéu</h3>
-                <p>Santiago Bernabéu offers players a chance to experience its iconic atmosphere.</p>
-                <p class="price">$100 per hour</p>
-            </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#about" class="page-scroll">About</a></li>
+        <li><a href="#contact" class="page-scroll">Contact</a></li>
+        <li><a href="regturfowner" class="page-scroll">To Get Listed</a></li>
+        <li><a href="reguser" class="page-scroll">Sign Up</a></li>
+        <li><a href="login" class="page-scroll">Log In</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+</nav>
+<!-- Header -->
+<header id="header">
+  <div class="intro">
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="intro-text">
+            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+          </div>
         </div>
-        <div class="turf-card">
-            <img src="{% static 'images/oldtrafford.JPEG' %}" alt="Old Trafford">
-            <div class="turf-info">
-                <h3>Old Trafford</h3>
-                <p>Old Trafford stadium turf offers players an immersive experience in a renowned football venue.</p>
-                <p class="price">$120 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/campnou.JPEG' %}" alt="Camp Nou">
-            <div class="turf-info">
-                <h3>Camp Nou</h3>
-                <p>Camp Nou stadium turf provides players with an authentic setting to enjoy football matches.</p>
-                <p class="price">$80 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/allianz.JPEG' %}" alt="Allianz Arena">
-            <div class="turf-info">
-                <h3>Allianz Arena</h3>
-                <p>Allianz Arena's turf allows players to experience the distinctive ambiance of FC Bayern Munich's home ground.</p>
-                <p class="price">$90 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/anfield.JPEG' %}" alt="Anfield">
-            <div class="turf-info">
-                <h3>Anfield</h3>
-                <p>Anfield stadium's turf provides an immersive football experience, capturing the essence of Liverpool FC's historic venue.</p>
-                <p class="price">$100 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/Manchester_city_etihad_stadium_(cropped).jpg' %}" alt="Etihad Stadium">
-            <div class="turf-info">
-                <h3>Etihad Stadium</h3>
-                <p>The Etihad Stadium turf offers players a chance to play in the home of Manchester City FC.</p>
-                <p class="price">$80 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/wembley.png' %}" alt="Wembley Stadium">
-            <div class="turf-info">
-                <h3>Wembley Stadium</h3>
-                <p>Wembley stadium turf provides players with an authentic setting to enjoy football matches.</p>
-                <p class="price">$80 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/ems.jpg' %}" alt="EMS Stadium">
-            <div class="turf-info">
-                <h3>EMS Stadium</h3>
-                <p>EMS Stadium also provides an 11-a-side ground for players to have a better playing experience.</p>
-                <p class="price">$60 per hour</p>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <h1 class="explore-heading">ECONOMICAL GRASS CHOICES FOR YOUR LANDSCAPE</h1>
-    <section class="content">
-        <div class="turf-card">
-            <img src="{% static 'images/clubanfield.JPEG' %}" alt="Club-De-Anfield">
-            <div class="turf-info">
-                <h3>Club-De-Anfield</h3>
-                <p>Club-De-Anfield nestled in the heart of Koduvally is a charming football ground that exudes the beautiful game.</p>
-                <p class="price">$10 per hour</p>
+<div id="features" class="text-center">
+  <div class="container">
+    <div class="section-title">
+      <h2>premium turf</h2>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="features-item">
+          <h3>Santiago Bernabéu</h3>
+          <img src="{% static 'images/bernabeu 2.JPEG' %}" class="img-responsive" alt="">
+          <p> Santiago Bernabéu Stadium provides top-tier turf, ensuring optimal conditions for elite football at the iconic home of Real Madrid CF.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="features-item">
+          <h3>Allianz Arena</h3>
+          <img src="{% static 'images/allianz.JPEG' %}" class="img-responsive" alt="">
+          <p>The Allianz Arena, home of Bayern Munich, features impeccably maintained top-quality turf, ideal for showcasing elite football matches.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="features-item">
+          <h3>Old Trafford</h3>
+          <img src="{% static 'images/oldtrafford.JPEG' %}" class="img-responsive" alt="">
+          <p>Old Trafford, home of Manchester United, features renowned pristine turf, ideal for premier football matches.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- About Section -->
+<div id="about">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 about-img"> </div>
+      <div class="col-xs-12 col-md-3 col-md-offset-1">
+        <div class="about-text">
+          <div class="section-title">
+            <h2>Our Story</h2>
+          </div>
+          <p>Turfind simplifies the process of booking turf fields for sports enthusiasts and teams. The website offers a straightforward platform where users can easily search for available turf venues based on location and preferred date and time. Each venue listing provides detailed information including facilities, pricing, and user reviews, allowing customers to make informed decisions.Turfind also features an online booking system with secure payment options, ensuring a seamless experience from reservation to confirmation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Restaurant Menu Section -->
+<br> <br> <br> <br> <br>
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>Your Favorite Turfs</h2>
+    </div>
+  </div>
+  <br>
+<!-- Gallery Section -->
+<div id="gallery">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <div class="gallery-item"> <img src="{% static 'images/dubai.JPEG' %}" class="img-responsive" alt=""></div>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <div class="gallery-item"> <img src="{% static 'images/snow.JPEG' %}" class="img-responsive" alt=""></div>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <div class="gallery-item"> <img src="{% static 'images/spain.JPEG' %}" class="img-responsive" alt=""></div>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <div class="gallery-item"> <img src="{% static 'images/swiz.JPEG' %}" class="img-responsive" alt=""></div>
+      </div>
+    </div>
+  </div>
+</div> <br> <br> <br> <br> <br>
+<!-- Team Section -->
+<div id="team">
+  <div class="container">
+    <div id="row">
+      <div class="col-md-6">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="section-title">
+            <h2>About Us</h2>
+          </div>
+        <p>Turfind, a project developed by Manu Sinan using Python with the Django framework for its backend, ensuring robust performance and scalability. The frontend is built using HTML and CSS to deliver a user-friendly interface, enabling visitors to effortlessly search for available turf locations based on specified criteria like location, date, and time. Turfind integrates authentication mechanisms to ensure data security and provides personalized user experiences, making it an efficient solution for managing turf facility bookings.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="team-img"><img src="{% static 'images/finalme.JPEG' %}" alt="..."></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact Section -->
+<div id="contact" class="text-center">
+  <div class="container text-center">
+    <div class="col-md-4">
+      <h3>Reservations</h3>
+      <div class="contact-item">
+        <p>Please call</p>
+        <p>(987) 654-3210</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Address</h3>
+      <div class="contact-item">
+        <p>4321 California St,</p>
+        <p>San Francisco, CA 12345</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Contact Us</h3>
+      <div class="contact-item">
+        <p>manusinan7168@gmail.com</p>
+        <p>+971 56 499 0383</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="section-title text-center">
+      <h3>Send us a message</h3>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      <form name="sentMessage" id="contactForm" novalidate>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+              <p class="help-block text-danger"></p>
             </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/The Arena @ Keat Hong.jpg' %}" alt="The Arena">
-            <div class="turf-info">
-                <h3>The Arena</h3>
-                <p>The Arena in Kattangal is known for its well-maintained surface, perfect for football enthusiasts in the area.</p>
-                <p class="price">$10 per hour</p>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+              <p class="help-block text-danger"></p>
             </div>
+          </div>
         </div>
-        <div class="turf-card">
-            <img src="{% static 'images/emadi.jpg' %}" alt="Emadi Soccer">
-            <div class="turf-info">
-                <h3>Emadi Soccer</h3>
-                <p>Emadi Turf, located in Koduvally, boasts a meticulously manicured playing surface ideal for local football enthusiasts.</p>
-                <p class="price">$10 per hour</p>
-            </div>
+        <div class="form-group">
+          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+          <p class="help-block text-danger"></p>
         </div>
-        <div class="turf-card">
-            <img src="{% static 'images/Schools-8.jpg' %}" alt="Sports Court">
-            <div class="turf-info">
-                <h3>Sports Court</h3>
-                <p>The sports court in Omassery stands as the busiest and most vibrant ground.</p>
-                <p class="price">$10 per hour</p>
-            </div>
-        </div>
-    </section>
-
-    <h1 class="explore-heading">BOOK YOUR 11-A-SIDE TURF GROUND WITH TURFIND</h1>
-    <section class="content">
-        <div class="turf-card">
-            <img src="{% static 'images/7sground.jpg' %}" alt="Emerald Arena">
-            <div class="turf-info">
-                <h3>Emerald Arena</h3>
-                <p>Emerald Arena is a premier 11-a-side football turf that provides an exceptional playing experience.</p>
-                <p class="price">$25 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/11s.jpg' %}" alt="Champions Park Turf">
-            <div class="turf-info">
-                <h3>Champions Park Turf</h3>
-                <p>Champions Park Turf is an exquisite 11-a-side football turf located adjacent to the bustling Hilite Mall.</p>
-                <p class="price">$20 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/elite.jpg' %}" alt="Elite Eleven Turf">
-            <div class="turf-info">
-                <h3>Elite Eleven Turf</h3>
-                <p>Elite Eleven Turf stands out as the most highly rated 11-a-side football ground in the region.</p>
-                <p class="price">$15 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/1.JPEG' %}" alt="Prime Play Arena">
-            <div class="turf-info">
-                <h3>Prime Play Arena</h3>
-                <p>Prime Play Arena is renowned as the busiest and most sought-after 11-a-side football turf in the area.</p>
-                <p class="price">$20 per hour</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="social-media">
-            <a href="#" target="_blank"><img src="{% static 'images/INSTTTA.png' %}" alt="Instagram" width="24" height="24"></a>
-            <a href="#" target="_blank"><img src="{% static 'images/fblogo-removebg-preview.png' %}" alt="Facebook" width="24" height="24"></a>
-            <a href="#" target="_blank"><img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" width="24" height="24"></a>
-        </div>
+        <div id="success"></div>
+        <button type="submit" class="btn btn-custom btn-lg">Send Message</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="container text-center">
+    <div class="col-md-6">
+      <p>&copy; All rights reserved. Copyright (2020 - 2024) -  <a href="#" rel="nofollow">Turfind.com™</a></p>
+    </div>
+    <div class="col-md-6">
+      <div class="social">
         <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Terms and Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-youtube"></i></a></li>
         </ul>
-        <p>&copy; 2024 Turfind.com</p>
-    </footer>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/SmoothScroll.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/contact_me.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

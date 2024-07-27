@@ -1,4 +1,4 @@
-        * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
 }
 
 .nav-bar {
-    background-color: #003580;
+    background-color: #002355;
     width: 100%;
     padding: 30px 10%;
     display: flex;
@@ -29,12 +29,16 @@ body {
     margin-left: 40px;
     font-family: 'Montserrat', sans-serif;
 }
+.logo img {
+    height: 46px;
+    width: auto;
+    }
 .dropdown {
     position: relative;
     display: inline-block;
   }
 
-  .dropdown button {
+.dropdown button {
   background-color: #6b61ff6f;
   color: #ffffff;
   padding: 10px 20px;
@@ -43,15 +47,15 @@ body {
   cursor: pointer;
 }
 
-/* Dropdown button hover */
 .dropdown button:hover {
   background-color: #ffffff62;
 }
 
-/* Dropdown content */
+
 .dropdown-content {
+  display: none;
   position: absolute;
-  top: 50px; /* Adjust this value to create space */
+  top: 50px;
   background-color: #f9f9f9;
   min-width: 150px;
   padding: 10px;
@@ -138,11 +142,15 @@ body {
             border-left: 5px solid #006ce7;
         }
 
-        .content {
-            padding: 2em;
-        }
+.content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .turf-card {
     grid-column: span 1;
+    text-decoration: none;
+    color: inherit;
     display: inline-block;
     margin: 60px;
     background-color: #fff;
@@ -154,7 +162,7 @@ body {
 }
 
 .turf-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-7px);
 }
 
@@ -169,66 +177,48 @@ body {
     padding: 10px;
 }
 
+.turf-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .turf-info h3 {
     font-size: 16px;
     margin-bottom: 5px;
+    color: black;
+    text-decoration: none;
 }
 
 .turf-info p {
     font-size: 14px;
     color: #666;
+    text-decoration: none;
 }
 
 .turf-info .price {
-     font-size: 18px;
-     font-weight: bold;
-     color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none; /* Remove underline */
 }
-.add-turf-box {
-  border: 1px solid lightgrey;
-  padding: 35px;
-  margin: 10px auto;
-  width: 40%;
-  border-radius: 10px;
-  text-align: center;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.add-turf-button {
-  background-color: #003580;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-right: 6px;
-  transition: background-color 0.8s ease;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+.book-now-button {
+    display: inline-block;
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.add-turf-button:hover {
-  background-color: rgba(0, 36, 86, 0.783);
+.book-now-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
-.add-turf-image {
-  max-width: 20%;
-  height: auto;
-  border-radius: 10px;
-  margin-left: 10px;
-}
-
-.add-turf-content {
-  flex: 1;
-  text-align: left;
-}
  /* Footer */
     .footer {
-        background-color: #003580;
+        background-color: #002355;
         padding: 20px;
         text-align: center;
         color: #fff;

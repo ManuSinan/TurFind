@@ -8,6 +8,7 @@ class LoginUser(AbstractUser):
     )
     status = models.CharField(choices=status_choices, max_length=20, default='PENDING', null=True, blank=True)
     user_type = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15, null=True, blank=True)
 
 class User(models.Model):
     login_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
@@ -15,6 +16,13 @@ class User(models.Model):
     email = models.EmailField()
     phone = models.IntegerField()
     password = models.CharField(max_length=30)
+    date_of_birth = models.DateField(null=True, blank=True)
+    gender_choices = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = models.CharField(max_length=10, choices=gender_choices, null=True, blank=True)
+
     def __str__(self):
         return self.user_name
 
@@ -25,40 +33,48 @@ class TurfOwner(models.Model):
     email = models.EmailField()
     phone = models.IntegerField()
     password = models.CharField(max_length=30)
+    date_of_birth = models.DateField(null=True, blank=True)
+    gender_choices = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = models.CharField(max_length=10, choices=gender_choices, null=True, blank=True)
 
     def __str__(self):
         return self.user_name
 
-
 class Turf(models.Model):
-    turf_id = models.ForeignKey(TurfOwner, on_delete=models.CASCADE)
-    turf_features = models.CharField(max_length=20)
+    CATEGORY_CHOICES = [
+        ('iconic', 'Iconic Stadiums'),
+        ('economical', 'Economical Grass Choices'),
+        ('eleven_a_side', '11-a-side Turf'),
+        ('newly_added', 'Newly Added Turfs'),
+    ]
+
+    turf_id = models.ForeignKey(TurfOwner, on_delete=models.CASCADE, default=1)
+    turf_name = models.CharField(max_length=100)
     price = models.IntegerField()
     details = models.CharField(max_length=200)
     location = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images')
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='newly_added')
 
     def __str__(self):
-        return self.details
-
-
+        return self.turf_name
 class Booking(models.Model):
-    booking_id = models.AutoField(primary_key=True)
-    login_user = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
-    book_date = models.CharField(max_length=50)
+    login_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
+    book_date = models.DateField()
     turf = models.ForeignKey(Turf, on_delete=models.CASCADE)
-    payment_status = models.BooleanField(default=False)
-    payment_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    payment_status = models.CharField(default="pending",max_length=100)
+    payment_amount = models.IntegerField(null=True, blank=True)
     payment_method = models.CharField(max_length=50, null=True, blank=True)
-    transaction_id = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return f'Booking {self.booking_id} by {self.login_user.user_name} on {self.book_date}'
+        return f'Booking {self.login_id.username} on {self.book_date}'
 
 
 class Review(models.Model):
-    review_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
+    login_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
     turf = models.ForeignKey(Turf, on_delete=models.CASCADE)
     rating = models.IntegerField()
     review = models.TextField()

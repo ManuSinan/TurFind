@@ -10,7 +10,7 @@
 <body>
     <nav class="nav-bar">
         <div class="logo">
-            <h1>Turfind.com</h1>
+            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
         </div>
         <a href="/" class="home-link">
             <img src="{% static 'images/homelogo.png' %}" alt="Home">
@@ -41,9 +41,8 @@
                     <input type="password" id="confirm_password" name="confirm_password" required>
                 </div>
                 <button type="submit">Signup</button>
-            </form>
-            <div class="footer">
-                <p>Already have an account? <a href='login'>LogIn</a></p>
+            </form><br>
+                <p class="login-prompt">Already have an account? <a href="login">Log In</a></p>
             </div>
         </div>
     </div>

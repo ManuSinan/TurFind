@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from turfindapp import views
 
 urlpatterns = [
@@ -27,6 +29,15 @@ urlpatterns = [
     path("profile",views.profile,name="profile"),
     path("booking",views.booking),
     path("rehome",views.homeagain),
+    path("addturf",views.addturf),
+    path("turflist",views.turflist),
+    path("editurf",views.editurf),
+    path("review/<int:id>",views.review,name="review"),
+    path("logout",views.logout),
+    path("payment",views.payment),
+    path("search",views.search),
 
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

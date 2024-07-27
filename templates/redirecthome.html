@@ -8,100 +8,65 @@
     <link rel="stylesheet" href="{% static 'css/homeagain.css' %}">
 </head>
 <body>
-        <nav class="nav-bar">
-            <div class="logo">
-                <h1>Turfind.com</h1>
-            </div>
-            <div class="dropdown">
-              <button><b>Menu</b></button>
-              <div class="dropdown-content">
-                <a href="{% url 'profile' %}"><b>Profile</b></a>
-                <a href="booking"><b>About</b></a>
-                <a href=""><b>Help</b></a>
-                <a href="#"><b>Logout</b></a>
-              </div>
-            </div>
-        </nav>
-        <form action="" >
+<form action="rehome" method="post">
+    {% csrf_token %}
+    <nav class="nav-bar">
+        <div class="logo">
+            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+        </div>
+        <div class="dropdown">
+        <button><b>Menu</b></button>
+        <div class="dropdown-content">
+            <a href="profile"><b>Profile</b></a>
+            <a href="booking"><b>Booking</b></a>
+            <a href="history"><b>History</b></a>
+            <a href="logout"><b>Logout</b></a>
+        </div>
+</div>
+    </nav>
+        <form action="rehome" method="post">
         <div class="search-bar-container">
-            <div class="search-bar">
-                <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
-                <input type="text" placeholder="">
-                <button>Search</button>
-            </div>
+    <div class="search-bar">
+        <form action="search" method="GET">
+            <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
+            <input type="text" name="turf_name" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
         </div>
         </form>
 
        <h1 class="explore-heading">EXPLORE ICONIC FOOTBALL STADIUMS AROUND THE WORLD</h1>
     <section class="content">
+        {% for turf in iconic_stadiums %}
         <div class="turf-card">
-            <img src="{% static 'images/bernabeu 2.JPEG' %}" alt="Santiago Bernabéu">
+        <a href="{% url 'review' id=turf.id %}">
+            <img src="{{ turf.image.url }}" alt="{{ turf.turf_name }}">
             <div class="turf-info">
-                <h3>Santiago Bernabéu</h3>
-                <p>Santiago Bernabéu offers players a chance to experience its iconic atmosphere.</p>
-                <p class="price">$100 per hour</p>
+                <h3>{{ turf.turf_name }}</h3>
+                <p>{{ turf.details }}</p>
+                <p class="price">${{ turf.price }} per hour</p>
             </div>
+        </a>
         </div>
-        <div class="turf-card">
-            <img src="{% static 'images/oldtrafford.JPEG' %}" alt="Old Trafford">
-            <div class="turf-info">
-                <h3>Old Trafford</h3>
-                <p>Old Trafford stadium turf offers players an immersive experience in a renowned football venue.</p>
-                <p class="price">$120 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/campnou.JPEG' %}" alt="Camp Nou">
-            <div class="turf-info">
-                <h3>Camp Nou</h3>
-                <p>Camp Nou stadium turf provides players with an authentic setting to enjoy football matches.</p>
-                <p class="price">$80 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/allianz.JPEG' %}" alt="Allianz Arena">
-            <div class="turf-info">
-                <h3>Allianz Arena</h3>
-                <p>Allianz Arena's turf allows players to experience the distinctive ambiance of FC Bayern Munich's home ground.</p>
-                <p class="price">$90 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/anfield.JPEG' %}" alt="Anfield">
-            <div class="turf-info">
-                <h3>Anfield</h3>
-                <p>Anfield stadium's turf provides an immersive football experience, capturing the essence of Liverpool FC's historic venue.</p>
-                <p class="price">$100 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/Manchester_city_etihad_stadium_(cropped).jpg' %}" alt="Etihad Stadium">
-            <div class="turf-info">
-                <h3>Etihad Stadium</h3>
-                <p>The Etihad Stadium turf offers players a chance to play in the home of Manchester City FC.</p>
-                <p class="price">$80 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/wembley.png' %}" alt="Wembley Stadium">
-            <div class="turf-info">
-                <h3>Wembley Stadium</h3>
-                <p>Wembley stadium turf provides players with an authentic setting to enjoy football matches.</p>
-                <p class="price">$80 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/ems.jpg' %}" alt="EMS Stadium">
-            <div class="turf-info">
-                <h3>EMS Stadium</h3>
-                <p>EMS Stadium also provides an 11-a-side ground for players to have a better playing experience.</p>
-                <p class="price">$60 per hour</p>
-            </div>
-        </div>
+        {% endfor %}
     </section>
 
     <h1 class="explore-heading">ECONOMICAL GRASS CHOICES FOR YOUR LANDSCAPE</h1>
     <section class="content">
+        {% for turf in economical_grass %}
+        <div class="turf-card">
+            <a href="{% url 'review' id=turf.id %}">
+            <img src="{{ turf.image.url }}" alt="{{ turf.turf_name }}">
+            <div class="turf-info">
+                <h3>{{ turf.turf_name }}</h3>
+                <p>{{ turf.details }}</p>
+                <p class="price">${{ turf.price }} per hour</p>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
         <div class="turf-card">
             <img src="{% static 'images/clubanfield.JPEG' %}" alt="Club-De-Anfield">
             <div class="turf-info">
@@ -138,6 +103,16 @@
 
     <h1 class="explore-heading">BOOK YOUR 11-A-SIDE TURF GROUND WITH TURFIND</h1>
     <section class="content">
+        {% for turf in eleven_a_side %}
+        <div class="turf-card">
+            <img src="{{ turf.image.url }}" alt="{{ turf.turf_name }}">
+            <div class="turf-info">
+                <h3>{{ turf.turf_name }}</h3>
+                <p>{{ turf.details }}</p>
+                <p class="price">${{ turf.price }} per hour</p>
+            </div>
+        </div>
+        {% endfor %}
         <div class="turf-card">
             <img src="{% static 'images/7sground.jpg' %}" alt="Emerald Arena">
             <div class="turf-info">
@@ -171,12 +146,6 @@
             </div>
         </div>
     </section>
-    <div class="add-turf-box">
-    <img src="{% static 'images/footballer-removebg-preview.png' %}" alt="Turf Image" class="add-turf-image">
-        <div class="caption"><b>Reserve your spot on the grassy field of champions - add your turf here!  </b></div>
-
-    <button class="add-turf-button"><b>Add Turf</b></button>
-</div>
     <footer class="footer">
         <div class="social-media">
             <a href="#" target="_blank"><img src="{% static 'images/INSTTTA.png' %}" alt="Instagram" width="24" height="24"></a>
@@ -191,5 +160,6 @@
         </ul>
         <p>&copy; 2024 Turfind.com</p>
     </footer>
+</form>
 </body>
 </html>
