@@ -16,7 +16,7 @@
               <button><b>Menu</b></button>
               <div class="dropdown-content">
                 <a href="profile"><b>Profile</b></a>
-                <a href="booking"><b>About</b></a>
+                <a href="addturf"><b>Add turf</b></a>
                 <a href=""><b>Help</b></a>
                 <a href="#"><b>Logout</b></a>
               </div>
@@ -42,8 +42,7 @@
                 <h3>{{ turf.turf_name }}</h3>
                 <p>{{ turf.details }}</p>
                 <p class="price">${{ turf.price }} per hour</p>
-                <a href="editurf" class="edit-button" style="text-decoration: none;"><b>Edit</b></a>
-
+                <a href="{% url 'editurf' id=turf.id %}" class="edit-button" style="text-decoration: none;"><b>Edit</b></a>
             </div>
         </div>
         {% endfor %}

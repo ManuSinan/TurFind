@@ -28,14 +28,17 @@ urlpatterns = [
     path("regturfowner",views.regturfowner),
     path("profile",views.profile,name="profile"),
     path("booking",views.booking),
-    path("rehome",views.homeagain),
+    path("rehome",views.homeagain,name='rehome'),
     path("addturf",views.addturf),
     path("turflist",views.turflist),
-    path("editurf",views.editurf),
+    path('editurf/<int:id>', views.editurf, name='editurf'),
     path("review/<int:id>",views.review,name="review"),
     path("logout",views.logout),
-    path("payment",views.payment),
+    path("payment/<int:id>",views.payment,name='payment'),
     path("search",views.search),
+    path("successpay/<int:id>",views.successpay,name='successpay'),
+    path("history",views.history),
+    path('booking', views.booking, name='booking'),
 
 
 ]

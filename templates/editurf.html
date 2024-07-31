@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <form action="editurf" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'editurf' id=turf.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <nav class="nav-bar">
             <div class="logo">

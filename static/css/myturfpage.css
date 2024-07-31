@@ -202,6 +202,10 @@ body {
 .turf-info .edit-button:hover {
     background-color: #00378ad4;
 }
+.addturf {
+position: center;
+padding: 100px;
+}
 
 .footer {
     text-align: center;

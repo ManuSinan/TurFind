@@ -1,93 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login Page</title>
-{% load static %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% static 'css/review.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Booking Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
+    <script defer src="{% static 'js/booking.js' %}"></script>
 </head>
 <body>
-<form action="review" method="post">
-   {% csrf_token %}
-    <nav class="nav-bar">
-        <div class="logo">
-            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
-        </div>
-        <a href="" class="home-link">
-            <img src="{% static 'images/homelogo.png' %}" alt="Home">
-        </a>
-    </nav>
+    <form id="bookingForm" action="{% url 'review' turf.id %}" method="post">
+        {% csrf_token %}
 
-    <br> <br> <br> <br> <br>
+        <nav class="nav-bar">
+            <div class="logo">
+                <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+            </div>
+            <a href="{% url 'rehome' %}" class="home-link">
+                <img src="{% static 'images/homelogo.png' %}" alt="Home">
+            </a>
+        </nav>
 
-    <img class="image" src="{{ turf.image.url }}">
-    <h3><b>{{ turf.turf_name }}</b></h3>
-    <button class="button">
-        <a href="booking">Book Now</a>
-    </button>
-    <span class="heading">User Rating</span>
-    <div class="row">
-        <div class="side">
-            <div>5 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-5"></div>
+        <br><br><br><br><br>
+
+        <img class="image" src="{{ turf.image.url }}" alt="{{ turf.turf_name }}">
+        <h3><b>{{ turf.turf_name }}</b></h3>
+        <br>
+        <div class="form-row">
+            <div class="form-holder">
+                <label for="day" class="special-label-1"><b>Booking Day</b></label>
+                <input type="datetime-local" name="day" class="form-control" id="day">
+            </div>
+            <div class="button-holder">
+                <input type="submit" id="bookNow" value="Book Now" class="button">
             </div>
         </div>
-        <div class="side right">
-            <div>150</div>
-        </div>
-        <div class="side">
-            <div>4 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-4"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>63</div>
-        </div>
-        <div class="side">
-            <div>3 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-3"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>15</div>
-        </div>
-        <div class="side">
-            <div>2 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-2"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>6</div>
-        </div>
-        <div class="side">
-            <div>1 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-1"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>20</div>
-        </div>
-    </div>
-</form>
+    </form>
+
     <footer class="footer">
         <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
     </footer>
-
 </body>
 </html>

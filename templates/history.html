@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/history.css' %}">
+</head>
+<body>
+<nav class="nav-bar">
+    <div class="logo">
+        <img src="{% static 'images/turfind.jpg' %}" alt="Turfind Logo" sizes="32x32" type="image/png">
+    </div>
+    <a href="{% url 'rehome' %}" class="home-link">
+        <img src="{% static 'images/homelogo.png' %}" alt="Home">
+    </a>
+</nav>
+<br> <br>
+<h1>Your Booking History</h1>
+
+<section class="content">
+    <table>
+        <thead>
+            <tr>
+                <th>Turf Name</th>
+                <th>Booking Date & Time</th>
+                <th>Price</th>
+                <th>Payment Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.turf.turf_name }}</td>
+                <td>{{ booking.book_datetime }}</td>
+                <td>${{ booking.payment_amount }}</td>
+                <td>{{ booking.payment_status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No bookings found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<footer class="footer">
+    <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
+</footer>
+</body>
+</html>

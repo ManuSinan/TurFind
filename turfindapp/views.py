@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponse
 from .models import LoginUser, User, Turf, TurfOwner, Booking
 
@@ -113,9 +114,8 @@ def profile(request):
     else:
         return render(request, 'profile.html', {'data': user_data})
 
-def booking(request,id):
+def booking(request):
     login_user = LoginUser.objects.get(id=request.user.id)
-    turf = Turf.objects.get(id=id)
     if request.method == 'POST':
         turf_name = request.POST['turf_name']
         location = request.POST['location']
@@ -124,8 +124,8 @@ def booking(request,id):
         price = request.POST['price']
         category = request.POST['category']
 
-        Booking.objects.create(login_id=login_user, turf= turf, turf_name=turf_name, location=location, details=details,image=image, price=price, category=category)
-    return render(request, 'booking.html',{'turf':turf})
+        Booking.objects.create(login_id=login_user, turf_name=turf_name, location=location, details=details,image=image, price=price, category=category)
+    return render(request, 'booking.html')
 
 def homeagain(request):
     iconic_stadiums = Turf.objects.filter(category='iconic')
@@ -146,9 +146,9 @@ def turflist(request):
     turfs = Turf.objects.filter(turf_id=owner)
     return render(request, 'myturfpage.html', {'turfs': turfs})
 
-def editurf(request):
+def editurf(request, id):
     owner = TurfOwner.objects.get(owner_id=request.user)
-    turf = Turf.objects.filter(turf_id=owner).first()
+    turf = Turf.objects.filter(turf_id=owner, id=id).first()
     if request.method == 'POST':
         turf.turf_name = request.POST['turf_name']
         turf.location = request.POST['location']
@@ -163,16 +163,19 @@ def editurf(request):
     else:
         return render(request, 'editurf.html', {'turf': turf})
 
-def review(request,id):
+def review(request, id):
+    user = LoginUser.objects.get(id=request.user.id)
     turf = Turf.objects.get(id=id)
-
-    return render(request,'review.html',{'turf': turf})
+    if request.method == 'POST':
+        day = request.POST['day']
+        booking = Booking.objects.create(login_id=user, book_datetime=day, turf=turf, payment_amount=turf.price)
+        booking.save()
+        return redirect(payment, id=id)
+    else:
+        return render(request, 'review.html', {'turf': turf})
 def logout(request):
-    if 'id' in request.session:
-        request.session.flush()
-        return redirect(login)
-def payment(request):
-    return render(request,'payment.html')
+    auth_logout(request)
+    return redirect(login)
 
 def search(request):
     query = request.GET.get('turf_name')
@@ -180,4 +183,22 @@ def search(request):
         turfs = Turf.objects.filter(turf_name__icontains=query)
     else:
         turfs=Turf.objects.all()
-    return render(request,"redirecthome.html", {'turfs': turfs})
+    return render(request,'redirecthome.html', {'turfs': turfs})
+
+def payment(request, id):
+    turf = Turf.objects.get(id=id)
+    if request.method == 'POST':
+        return redirect('successpay', id=id)
+    else:
+        return render(request, 'payment.html', {'turf': turf})
+
+def successpay(request, id):
+    turf = Turf.objects.get(id=id)
+    return render(request, 'paysuccess.html', {'turf': turf})
+
+def history(request):
+    login_user = LoginUser.objects.get(id=request.user.id)
+    bookings = Booking.objects.filter(login_id=login_user)
+    return render(request, 'history.html', {'bookings': bookings})
+
+

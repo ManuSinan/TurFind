@@ -34,9 +34,9 @@ body {
     width: auto;
     }
 .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+  position: relative;
+  display: inline-block;
+}
 
 .dropdown button {
   background-color: #6b61ff6f;
@@ -50,10 +50,7 @@ body {
 .dropdown button:hover {
   background-color: #ffffff62;
 }
-
-
 .dropdown-content {
-  display: none;
   position: absolute;
   top: 50px;
   background-color: #f9f9f9;
@@ -79,9 +76,9 @@ body {
     background-color: #f1f1f1;
   }
 
- .dropdown:hover.dropdown-content {
-    display: block;
-  }
+.dropdown:hover > .dropdown-content {
+  display: block;
+}
 
  .dropdown button:focus +.dropdown-content {
     display: block;

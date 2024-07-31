@@ -8,24 +8,23 @@
     <link rel="stylesheet" href="{% static 'css/homeagain.css' %}">
 </head>
 <body>
+<nav class="nav-bar">
+    <div class="logo">
+      <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+    </div>
+    <div class="dropdown">
+      <button><b>Menu</b></button>
+      <div class="dropdown-content">
+        <a href='profile'><b>Profile</b></a>
+        <a href="booking"><b>Booking</b></a>
+        <a href="history"><b>History</b></a>
+        <a href="logout"><b>Logout</b></a>
+      </div>
+    </div>
+  </nav>
 <form action="rehome" method="post">
     {% csrf_token %}
-    <nav class="nav-bar">
-        <div class="logo">
-            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
-        </div>
-        <div class="dropdown">
-        <button><b>Menu</b></button>
-        <div class="dropdown-content">
-            <a href="profile"><b>Profile</b></a>
-            <a href="booking"><b>Booking</b></a>
-            <a href="history"><b>History</b></a>
-            <a href="logout"><b>Logout</b></a>
-        </div>
-</div>
-    </nav>
-        <form action="rehome" method="post">
-        <div class="search-bar-container">
+    <div class="search-bar-container">
     <div class="search-bar">
         <form action="search" method="GET">
             <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
@@ -34,9 +33,7 @@
         </form>
     </div>
 </div>
-        </div>
-        </form>
-
+</form>
        <h1 class="explore-heading">EXPLORE ICONIC FOOTBALL STADIUMS AROUND THE WORLD</h1>
     <section class="content">
         {% for turf in iconic_stadiums %}
@@ -67,84 +64,22 @@
             </a>
         </div>
         {% endfor %}
-        <div class="turf-card">
-            <img src="{% static 'images/clubanfield.JPEG' %}" alt="Club-De-Anfield">
-            <div class="turf-info">
-                <h3>Club-De-Anfield</h3>
-                <p>Club-De-Anfield nestled in the heart of Koduvally is a charming football ground that exudes the beautiful game.</p>
-                <p class="price">$10 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/The Arena @ Keat Hong.jpg' %}" alt="The Arena">
-            <div class="turf-info">
-                <h3>The Arena</h3>
-                <p>The Arena in Kattangal is known for its well-maintained surface, perfect for football enthusiasts in the area.</p>
-                <p class="price">$10 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/emadi.jpg' %}" alt="Emadi Soccer">
-            <div class="turf-info">
-                <h3>Emadi Soccer</h3>
-                <p>Emadi Turf, located in Koduvally, boasts a meticulously manicured playing surface ideal for local football enthusiasts.</p>
-                <p class="price">$10 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/Schools-8.jpg' %}" alt="Sports Court">
-            <div class="turf-info">
-                <h3>Sports Court</h3>
-                <p>The sports court in Omassery stands as the busiest and most vibrant ground.</p>
-                <p class="price">$10 per hour</p>
-            </div>
-        </div>
     </section>
 
     <h1 class="explore-heading">BOOK YOUR 11-A-SIDE TURF GROUND WITH TURFIND</h1>
     <section class="content">
         {% for turf in eleven_a_side %}
         <div class="turf-card">
+            <a href="{% url 'review' id=turf.id %}">
             <img src="{{ turf.image.url }}" alt="{{ turf.turf_name }}">
             <div class="turf-info">
                 <h3>{{ turf.turf_name }}</h3>
                 <p>{{ turf.details }}</p>
                 <p class="price">${{ turf.price }} per hour</p>
             </div>
+            </a>
         </div>
         {% endfor %}
-        <div class="turf-card">
-            <img src="{% static 'images/7sground.jpg' %}" alt="Emerald Arena">
-            <div class="turf-info">
-                <h3>Emerald Arena</h3>
-                <p>Emerald Arena is a premier 11-a-side football turf that provides an exceptional playing experience.</p>
-                <p class="price">$25 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/11s.jpg' %}" alt="Champions Park Turf">
-            <div class="turf-info">
-                <h3>Champions Park Turf</h3>
-                <p>Champions Park Turf is an exquisite 11-a-side football turf located adjacent to the bustling Hilite Mall.</p>
-                <p class="price">$20 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/elite.jpg' %}" alt="Elite Eleven Turf">
-            <div class="turf-info">
-                <h3>Elite Eleven Turf</h3>
-                <p>Elite Eleven Turf stands out as the most highly rated 11-a-side football ground in the region.</p>
-                <p class="price">$15 per hour</p>
-            </div>
-        </div>
-        <div class="turf-card">
-            <img src="{% static 'images/1.JPEG' %}" alt="Prime Play Arena">
-            <div class="turf-info">
-                <h3>Prime Play Arena</h3>
-                <p>Prime Play Arena is renowned as the busiest and most sought-after 11-a-side football turf in the area.</p>
-                <p class="price">$20 per hour</p>
-            </div>
-        </div>
     </section>
     <footer class="footer">
         <div class="social-media">

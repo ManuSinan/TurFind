@@ -10,6 +10,7 @@ class LoginUser(AbstractUser):
     user_type = models.CharField(max_length=50)
     phone = models.CharField(max_length=15, null=True, blank=True)
 
+
 class User(models.Model):
     login_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=20)
@@ -63,14 +64,13 @@ class Turf(models.Model):
         return self.turf_name
 class Booking(models.Model):
     login_id = models.ForeignKey(LoginUser, on_delete=models.CASCADE)
-    book_date = models.DateField()
+    book_datetime = models.DateTimeField(null=True, blank=True)
     turf = models.ForeignKey(Turf, on_delete=models.CASCADE)
     payment_status = models.CharField(default="pending",max_length=100)
     payment_amount = models.IntegerField(null=True, blank=True)
-    payment_method = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
-        return f'Booking {self.login_id.username} on {self.book_date}'
+        return f'Booking {self.login_id.username} on {self.book_datetime}'
 
 
 class Review(models.Model):
