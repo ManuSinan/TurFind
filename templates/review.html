@@ -17,7 +17,7 @@
                 <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
             </div>
             <a href="{% url 'rehome' %}" class="home-link">
-                <img src="{% static 'images/homelogo.png' %}" alt="Home">
+                <img src="{% static 'images/back.png' %}" alt="Home">
             </a>
         </nav>
 
@@ -29,7 +29,7 @@
         <div class="form-row">
             <div class="form-holder">
                 <label for="day" class="special-label-1"><b>Booking Day</b></label>
-                <input type="datetime-local" name="day" class="form-control" id="day">
+                <input type="datetime-local" name="day" class="form-control" id="day" step="3600">
             </div>
             <div class="button-holder">
                 <input type="submit" id="bookNow" value="Book Now" class="button">

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/ownerview.css' %}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="logo">
+            <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+        </div>
+        <a href="{% url 'turflist' %}" class="home-link">
+            <img src="{% static 'images/back.png' %}" alt="Home">
+        </a>
+    </nav>
+    <br>
+     {% if bookings %}
+        <h1>Bookings of {{ bookings.0.turf.turf_name }}</h1>
+    {% endif %}
+    <br>
+    <table id="bookings-table">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>User Name</th>
+            <th>Booking Date</th>
+            <th>Payment status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+
+        <tr>
+            <td>{{ booking.id }}</td>
+            <td>{{ booking.login_id.username }}</td>
+            <td>{{ booking.book_datetime }}</td>
+            <td>{{ booking.payment_status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <footer class="footer">
+        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com</p>
+    </footer>
+</body>
+</html>

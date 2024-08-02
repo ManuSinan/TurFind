@@ -17,7 +17,7 @@
             <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
         </div>
         <a href="{% url 'rehome' %}" class="home-link">
-            <img src="{% static 'images/homelogo.png' %}" alt="Home">
+            <img src="{% static 'images/back.png' %}" alt="Home">
         </a>
     </nav>
     <br> <br> <br> <br> <br> <br> <br>
@@ -33,9 +33,9 @@
                             <i class="fa fa-cc-mastercard" style="color:red;"></i>
                             <i class="fa fa-cc-discover" style="color:orange;"></i>
                         </div>
-                        <p><b>{{ turf.turf_name }}</b></p>
+                        <p><b>{{ turf.turf.turf_name }}</b></p>
                         <hr>
-                        <p>Total <span class="price" style="color:black"><b>${{ turf.price }}</b></span></p>
+                        <p>Total <span class="price" style="color:black"><b>${{ turf.payment_amount }}</b></span></p>
                         <label for="cname">Name on Card</label>
                         <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
                         <label for="ccnum">Credit Card Number</label>

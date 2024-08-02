@@ -6,7 +6,6 @@
     <title>Edit Turf</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/editurf.css' %}">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
     <form action="{% url 'editurf' id=turf.id %}" method="POST" enctype="multipart/form-data">
@@ -15,9 +14,6 @@
             <div class="logo">
                 <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
             </div>
-            <a href="rehome" class="home-link">
-                <img src="{% static 'images/homelogo.png' %}" alt="Home">
-            </a>
         </nav>
         <br> <br>
         <div class="container">
@@ -42,12 +38,17 @@
                 <span class="label">New Image</span>
                 <input type="file" class="value" id="image" name="image">
             </div>
-
+        </div>
+        <div class="button-container">
             <button type="submit" class="submit-button">Save Changes</button>
         </div>
     </form>
+    <form action="{% url 'deleteturf' id=turf.id %}" method="POST" class="delete-form">
+        {% csrf_token %}
+        <button type="submit" class="submit-button delete-button">Delete Turf</button>
+    </form>
     <footer class="footer">
-        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
+        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com</p>
     </footer>
 </body>
 </html>

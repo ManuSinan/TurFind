@@ -22,18 +22,17 @@
       </div>
     </div>
   </nav>
-<form action="rehome" method="post">
+<form action="search" method="GET">
     {% csrf_token %}
     <div class="search-bar-container">
-    <div class="search-bar">
-        <form action="search" method="GET">
+        <div class="search-bar">
             <img src="{% static 'images/5654592.png' %}" alt="Turf 1">
             <input type="text" name="turf_name" placeholder="Search...">
             <button type="submit">Search</button>
-        </form>
+        </div>
     </div>
-</div>
 </form>
+
        <h1 class="explore-heading">EXPLORE ICONIC FOOTBALL STADIUMS AROUND THE WORLD</h1>
     <section class="content">
         {% for turf in iconic_stadiums %}
@@ -95,6 +94,5 @@
         </ul>
         <p>&copy; 2024 Turfind.com</p>
     </footer>
-</form>
 </body>
 </html>

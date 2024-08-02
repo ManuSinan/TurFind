@@ -170,7 +170,8 @@ def review(request, id):
         day = request.POST['day']
         booking = Booking.objects.create(login_id=user, book_datetime=day, turf=turf, payment_amount=turf.price)
         booking.save()
-        return redirect(payment, id=id)
+        print(booking.id)
+        return redirect(payment, id=booking.id)
     else:
         return render(request, 'review.html', {'turf': turf})
 def logout(request):
@@ -180,25 +181,68 @@ def logout(request):
 def search(request):
     query = request.GET.get('turf_name')
     if query:
-        turfs = Turf.objects.filter(turf_name__icontains=query)
+        iconic_stadiums = Turf.objects.filter(category='iconic', turf_name__icontains=query)
+        economical_grass = Turf.objects.filter(category='economical', turf_name__icontains=query)
+        eleven_a_side = Turf.objects.filter(category='eleven_a_side', turf_name__icontains=query)
     else:
-        turfs=Turf.objects.all()
-    return render(request,'redirecthome.html', {'turfs': turfs})
+        iconic_stadiums = Turf.objects.filter(category='iconic')
+        economical_grass = Turf.objects.filter(category='economical')
+        eleven_a_side = Turf.objects.filter(category='eleven_a_side')
+
+    context = {
+        'iconic_stadiums': iconic_stadiums,
+        'economical_grass': economical_grass,
+        'eleven_a_side': eleven_a_side,
+    }
+    return render(request, 'redirecthome.html', context)
 
 def payment(request, id):
-    turf = Turf.objects.get(id=id)
+    booking = Booking.objects.get(id=id)
     if request.method == 'POST':
+        booking.payment_status = "Paid"
+        booking.save()
         return redirect('successpay', id=id)
     else:
-        return render(request, 'payment.html', {'turf': turf})
+        return render(request, 'payment.html', {'turf': booking})
 
 def successpay(request, id):
-    turf = Turf.objects.get(id=id)
-    return render(request, 'paysuccess.html', {'turf': turf})
+    booking = Booking.objects.get(id=id)
+    return render(request, 'paysuccess.html', {'turf': booking})
 
 def history(request):
     login_user = LoginUser.objects.get(id=request.user.id)
     bookings = Booking.objects.filter(login_id=login_user)
     return render(request, 'history.html', {'bookings': bookings})
 
+def deleteturf(request, id):
+    owner = TurfOwner.objects.get(owner_id=request.user)
+    turf = Turf.objects.filter(turf_id=owner, id=id)
+    if request.method == 'POST':
+        turf.delete()
+        return redirect(turflist)
+    else:
+        return render(request, 'editurf.html', {'turf': turf})
 
+def ownerprofile(request):
+    owner = TurfOwner.objects.get(owner_id=request.user)
+    if request.method == "POST":
+        owner.user_name = request.POST.get('user_name', owner.user_name)
+        owner.email = request.POST.get('email', owner.email)
+        owner.phone = request.POST.get('phone_no', owner.phone)
+        owner.date_of_birth = request.POST.get('date_of_birth', owner.date_of_birth)
+        owner.gender = request.POST.get('gender', owner.gender)
+        owner.save()
+        return redirect(ownerprofile)
+    return render(request, 'ownereditprofile.html', {'data': owner})
+
+def ownerview(request, id):
+    turf = Turf.objects.get(id=id)
+    bookings = Booking.objects.filter(turf=turf)
+    return render(request, "ownersview.html", {'bookings': bookings})
+def ownersearch(request):
+    query = request.GET.get('turf_name')
+    if query:
+        turfs = Turf.objects.filter(turf_name__icontains=query)
+    else:
+        turfs=Turf.objects.all()
+    return render(request,'myturfpage.html', {'turfs': turfs})

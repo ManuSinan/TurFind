@@ -6,17 +6,16 @@
     <title>Add Turf</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/addturf.css' %}">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <form action="addturf" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'addturf' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <nav class="nav-bar">
             <div class="logo">
                 <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
             </div>
-            <a href="rehome" class="home-link">
-                <img src="{% static 'images/homelogo.png' %}" alt="Home">
+            <a href="{% url 'turflist' %}" class="home-link">
+                <img src="{% static 'images/back.png' %}" alt="Home">
             </a>
         </nav>
         <br> <br>
@@ -52,7 +51,7 @@
             </div>
 
             <div class="button-container">
-                <a href="turflist" class="skip-button" style="text-decoration: none;">Skip</a>
+                <a href="{% url 'turflist' %}" class="skip-button" style="text-decoration: none;">Skip</a>
                 <button type="submit" class="submit-button">Submit</button>
             </div>
         </div>
