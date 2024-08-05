@@ -27,6 +27,7 @@
             <th>Booking ID</th>
             <th>User Name</th>
             <th>Booking Date</th>
+            <th>Contact</th>
             <th>Payment status</th>
         </tr>
     </thead>
@@ -37,6 +38,7 @@
             <td>{{ booking.id }}</td>
             <td>{{ booking.login_id.username }}</td>
             <td>{{ booking.book_datetime }}</td>
+            <td>{{ booking.login_id.phone }}</td>
             <td>{{ booking.payment_status }}</td>
         </tr>
         {% endfor %}

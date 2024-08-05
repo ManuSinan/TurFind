@@ -43,6 +43,9 @@ urlpatterns = [
     path('ownerprofile/', views.ownerprofile, name='ownerprofile'),
     path("ownerview/<int:id>", views.ownerview, name="ownerview"),
     path("ownersearch/", views.ownersearch, name="ownersearch"),
+    path("adminlogin", views.adminlogin),
+    path("adminhome/", views.adminhome, name='adminhome'),
+    path('adminview/<int:id>/', views.adminview, name='adminview'),
 
 
 ]

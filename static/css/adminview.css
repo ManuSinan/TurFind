@@ -4,7 +4,6 @@ body {
     padding: 0;
 }
 
-/* Navigation bar styles */
 .nav-bar {
     background-color: #002355;
     padding: 1em 2em;
@@ -21,7 +20,7 @@ body {
 .home-link img {
     height: 30px;
     width: auto;
-    margin-right:30px;
+    margin-right:20px;
 }
 
 .logo {
@@ -37,52 +36,39 @@ body {
     height: 46px;
     width: auto;
 }
-
-h1 {
-    text-align: center;
-    color: #000000;
-}
-section.content {
-    width: 80%;
-    margin: 20px auto;
+.main {
     padding: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 30px auto;
+.turfs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-thead {
-    color: #000000;
-    text-align: center;
-}
-
-td, th {
+.turf-item {
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    margin: 100px;
     padding: 10px;
-    text-align: center;
+    width: 50%;
+    box-sizing: border-box;
 }
 
-th {
-    border-bottom: 1px solid #bcbcbc;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tfoot {
-    font-weight: bold;
-}
-.footer {
-    text-align: center;
-    position: fixed;
-    bottom: 0;
+.turf-item img {
     width: 100%;
-    background-color: #002355;
-    color: #fff;
-    padding: 10px 0;
-    font-size: 14px;
+    height: auto;
+    border-radius: 8px;
 }
 
+.turf-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.turf-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}

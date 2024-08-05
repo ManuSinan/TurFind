@@ -17,7 +17,6 @@ class User(models.Model):
     email = models.EmailField()
     phone = models.IntegerField()
     password = models.CharField(max_length=30)
-    date_of_birth = models.DateField(null=True, blank=True)
     gender_choices = (
         ('Male', 'Male'),
         ('Female', 'Female'),
@@ -34,7 +33,6 @@ class TurfOwner(models.Model):
     email = models.EmailField()
     phone = models.IntegerField()
     password = models.CharField(max_length=30)
-    date_of_birth = models.DateField(null=True, blank=True)
     gender_choices = (
         ('Male', 'Male'),
         ('Female', 'Female'),

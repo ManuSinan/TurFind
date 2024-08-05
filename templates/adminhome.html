@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turfind.com</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/adminhome.css' %}">
+</head>
+<body>
+<nav class="nav-bar">
+    <div class="logo">
+      <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
+    </div>
+    <div class="logout-button">
+      <a href="{% url 'logout' %}"><img src="{% static 'images/exit.png' %}" alt="Logout"></a>
+    </div>
+    <div class="nav-bar-top">
+      <div class="card-wrapper">
+        <div class="card-container">
+        <div class="card">
+          <h2>Users <img src="{% static 'images/userlogo.png' %}"></h2>
+            <h1> {{ user_count }} </h1>
+            <p><img src="{% static 'images/refresh.jpg' %}">Just update</p>
+        </div>
+        <div class="card">
+          <h2>Turf <img src="{% static 'images/turflogo.png' %}"></h2>
+            <h1> {{ turf_count }} </h1>
+          <p><img src="{% static 'images/refresh.jpg' %}">Just update</p>
+        </div>
+        <div class="card">
+          <h2> Booking <img src="{% static 'images/bookinglogo.png' %}"></h2>
+            <h1> {{ booking_count }} </h1>
+          <p><img src="{% static 'images/refresh.jpg' %}">Just update</p>
+        </div>
+        <div class="card">
+          <h2>Owners <img src="{% static 'images/ownerlogo.png' %}"></h2>
+            <h1> {{ owner_count }} </h1>
+          <p><img src="{% static 'images/refresh.jpg' %}">Just update</p>
+        </div>
+      </div>
+    </div>
+</nav>
+<br>
+<main>
+  <div class="tables-container">
+    <section class="table-container booking-container">
+      <h2>Booking List</h2>
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th>Booked User</th>
+            <th>Turf Name</th>
+            <th>Booking ID</th>
+            <th>Payment Status</th>
+            <th>Booking Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+          <tr>
+            <td>{{ booking.login_id.username }}</td>
+            <td>{{ booking.turf_name }}</td>
+            <td>{{ booking.id }}</td>
+            <td>{{ booking.payment_status }}</td>
+            <td>{{ booking.book_datetime }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5">No bookings found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <section class="table-container turf-container">
+      <h2>Turf List</h2>
+      <table class="turf-table">
+        <thead>
+          <tr>
+            <th>Turf Name</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for turf in turfs %}
+          <tr>
+            <td><a href="{% url 'adminview' id=turf.id %}">{{ turf.turf_name }}</a></td>
+            <td><a href="{% url 'adminview' id=turf.id %}">{{ turf.location }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com</p>
+    </footer>
+</body>
+</html>

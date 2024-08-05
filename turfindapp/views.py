@@ -63,7 +63,9 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            if user.user_type == "User":
+            if user.is_staff:
+                return redirect(adminhome)
+            elif user.user_type == "User":
                 return redirect(homeagain)
             elif user.user_type == "TurfOwner":
                 return redirect(addturf)
@@ -73,7 +75,6 @@ def login(request):
             return render(request, 'login.html', {'message': 'Invalid credentials'})
     else:
         return render(request, 'login.html')
-
 
 def addturf(request):
     owner = LoginUser.objects.get(id=request.user.id)
@@ -106,7 +107,6 @@ def profile(request):
         user_data.user_name = login_user.username
         user_data.email = login_user.email
         user_data.phone = login_user.phone
-        user_data.date_of_birth = request.POST.get('date_of_birth', user_data.date_of_birth)
         user_data.gender = request.POST.get('gender', user_data.gender)
         user_data.save()
 
@@ -174,6 +174,7 @@ def review(request, id):
         return redirect(payment, id=booking.id)
     else:
         return render(request, 'review.html', {'turf': turf})
+
 def logout(request):
     auth_logout(request)
     return redirect(login)
@@ -229,7 +230,6 @@ def ownerprofile(request):
         owner.user_name = request.POST.get('user_name', owner.user_name)
         owner.email = request.POST.get('email', owner.email)
         owner.phone = request.POST.get('phone_no', owner.phone)
-        owner.date_of_birth = request.POST.get('date_of_birth', owner.date_of_birth)
         owner.gender = request.POST.get('gender', owner.gender)
         owner.save()
         return redirect(ownerprofile)
@@ -239,6 +239,7 @@ def ownerview(request, id):
     turf = Turf.objects.get(id=id)
     bookings = Booking.objects.filter(turf=turf)
     return render(request, "ownersview.html", {'bookings': bookings})
+
 def ownersearch(request):
     query = request.GET.get('turf_name')
     if query:
@@ -246,3 +247,36 @@ def ownersearch(request):
     else:
         turfs=Turf.objects.all()
     return render(request,'myturfpage.html', {'turfs': turfs})
+
+
+def adminlogin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        admin = authenticate(request, username=username, password=password)
+        if admin is not None and admin.is_staff:
+            auth_login(request, admin)
+            return redirect(adminhome)
+
+def adminhome(request):
+    user_count = LoginUser.objects.filter(user_type='User').count()
+    turf_count = Turf.objects.all().count()
+    booking_count = Booking.objects.all().count()
+    owner_count = LoginUser.objects.filter(user_type='TurfOwner').count()
+
+    bookings = Booking.objects.all()
+    turfs = Turf.objects.all()
+
+    context = {
+        'user_count': user_count,
+        'turf_count': turf_count,
+        'booking_count': booking_count,
+        'owner_count': owner_count,
+        'bookings': bookings,
+        'turfs': turfs,
+    }
+    return render(request, 'adminhome.html', context)
+
+def adminview(request, id):
+    turf = Turf.objects.get(id=id)
+    return render(request, "adminview.html", {'turf': turf})
