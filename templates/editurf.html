@@ -6,6 +6,7 @@
     <title>Edit Turf</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/editurf.css' %}">
+    <script defer src="{% static 'js/delete.js' %}"></script>
 </head>
 <body>
     <form action="{% url 'editurf' id=turf.id %}" method="POST" enctype="multipart/form-data">
@@ -43,10 +44,20 @@
             <button type="submit" class="submit-button">Save Changes</button>
         </div>
     </form>
-    <form action="{% url 'deleteturf' id=turf.id %}" method="POST" class="delete-form">
-        {% csrf_token %}
-        <button type="submit" class="submit-button delete-button">Delete Turf</button>
-    </form>
+        <a href="{% url 'deleteturf' id=turf.id %}" class="button">
+            <div class="trash">
+                <div class="top">
+                    <div class="paper"></div>
+                </div>
+                <div class="box"></div>
+                <div class="check">
+                    <svg viewBox="0 0 8 6">
+                        <polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <span>Delete Turf</span>
+        </a>
     <footer class="footer">
         <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com</p>
     </footer>

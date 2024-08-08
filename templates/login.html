@@ -5,12 +5,9 @@
     <title>Login Page</title>
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<form action="login" method="post">
-        {% csrf_token %}
     <nav class="nav-bar">
         <div class="logo">
             <img src="{% static 'images/turfind.jpg' %}" alt="Logo" sizes="32x32" type="image/png">
@@ -32,13 +29,13 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit">Login</button>
-            </form> <br>
-                <p class="login-prompt">Don't have an account? <a href="reguser">Sign up</a></p>
+            </form>
+            <br>
+            <p class="login-prompt">Don't have an account? <a href="reguser">Sign up</a></p>
         </div>
     </div>
     <footer class="footer">
         <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
     </footer>
-</form>
 </body>
 </html>

@@ -76,6 +76,7 @@ class Review(models.Model):
     turf = models.ForeignKey(Turf, on_delete=models.CASCADE)
     rating = models.IntegerField()
     review = models.TextField()
+    date = models.DateField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
-        return f'Review by {self.user} for {self.turf}'
+        return f'Review by {self.login_id.username} for {self.turf}'

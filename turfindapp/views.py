@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponse
-from .models import LoginUser, User, Turf, TurfOwner, Booking
+from .models import LoginUser, User, Turf, TurfOwner, Booking, Review
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
     return render(request, 'home.html')
@@ -114,19 +116,6 @@ def profile(request):
     else:
         return render(request, 'profile.html', {'data': user_data})
 
-def booking(request):
-    login_user = LoginUser.objects.get(id=request.user.id)
-    if request.method == 'POST':
-        turf_name = request.POST['turf_name']
-        location = request.POST['location']
-        details = request.POST['details']
-        image = request.FILES['image']
-        price = request.POST['price']
-        category = request.POST['category']
-
-        Booking.objects.create(login_id=login_user, turf_name=turf_name, location=location, details=details,image=image, price=price, category=category)
-    return render(request, 'booking.html')
-
 def homeagain(request):
     iconic_stadiums = Turf.objects.filter(category='iconic')
     economical_grass = Turf.objects.filter(category='economical')
@@ -163,17 +152,17 @@ def editurf(request, id):
     else:
         return render(request, 'editurf.html', {'turf': turf})
 
-def review(request, id):
+def booking(request, id):
     user = LoginUser.objects.get(id=request.user.id)
     turf = Turf.objects.get(id=id)
+    review = Review.objects.filter(turf=turf)
     if request.method == 'POST':
         day = request.POST['day']
         booking = Booking.objects.create(login_id=user, book_datetime=day, turf=turf, payment_amount=turf.price)
         booking.save()
-        print(booking.id)
         return redirect(payment, id=booking.id)
     else:
-        return render(request, 'review.html', {'turf': turf})
+        return render(request, 'review.html', {'turf': turf, 'reviews':review})
 
 def logout(request):
     auth_logout(request)
@@ -218,11 +207,8 @@ def history(request):
 def deleteturf(request, id):
     owner = TurfOwner.objects.get(owner_id=request.user)
     turf = Turf.objects.filter(turf_id=owner, id=id)
-    if request.method == 'POST':
-        turf.delete()
-        return redirect(turflist)
-    else:
-        return render(request, 'editurf.html', {'turf': turf})
+    turf.delete()
+    return redirect(turflist)
 
 def ownerprofile(request):
     owner = TurfOwner.objects.get(owner_id=request.user)
@@ -248,24 +234,53 @@ def ownersearch(request):
         turfs=Turf.objects.all()
     return render(request,'myturfpage.html', {'turfs': turfs})
 
-
-def adminlogin(request):
+def addreview(request,id):
+    turf = Turf.objects.get(id=id)
+    all_review = Review.objects.all()
+    user = LoginUser.objects.get(id=request.user.id)
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        admin = authenticate(request, username=username, password=password)
-        if admin is not None and admin.is_staff:
-            auth_login(request, admin)
-            return redirect(adminhome)
+        rating = request.POST['rate']
+        review_text = request.POST['review']
+        reviews=Review.objects.filter(login_id=user, turf=turf).exists()
+        if not reviews:
+            review = Review.objects.create(login_id=user, turf=turf, rating=rating, review=review_text)
+            review.save()
+        else:
+            return render(request,'review.html',{'turf':turf,'reviews':all_review,'message':"you have already added a review"})
+        return redirect(booking,id)
 
+
+@login_required(login_url='login')
 def adminhome(request):
+    # Counts
     user_count = LoginUser.objects.filter(user_type='User').count()
     turf_count = Turf.objects.all().count()
     booking_count = Booking.objects.all().count()
     owner_count = LoginUser.objects.filter(user_type='TurfOwner').count()
 
-    bookings = Booking.objects.all()
-    turfs = Turf.objects.all()
+    # Paginate bookings
+    bookings_list = Booking.objects.order_by('-book_datetime')
+    bookings_paginator = Paginator(bookings_list, 10)  # Show 10 bookings per page
+    bookings_page = request.GET.get('bookings_page', 1)
+
+    try:
+        bookings = bookings_paginator.page(bookings_page)
+    except PageNotAnInteger:
+        bookings = bookings_paginator.page(1)
+    except EmptyPage:
+        bookings = bookings_paginator.page(bookings_paginator.num_pages)
+
+    # Paginate turfs
+    turfs_list = Turf.objects.all()
+    turfs_paginator = Paginator(turfs_list, 10)  # Show 10 turfs per page
+    turfs_page = request.GET.get('turfs_page', 1)
+
+    try:
+        turfs = turfs_paginator.page(turfs_page)
+    except PageNotAnInteger:
+        turfs = turfs_paginator.page(1)
+    except EmptyPage:
+        turfs = turfs_paginator.page(turfs_paginator.num_pages)
 
     context = {
         'user_count': user_count,
@@ -277,6 +292,7 @@ def adminhome(request):
     }
     return render(request, 'adminhome.html', context)
 
+@login_required(login_url=login)
 def adminview(request, id):
     turf = Turf.objects.get(id=id)
     return render(request, "adminview.html", {'turf': turf})

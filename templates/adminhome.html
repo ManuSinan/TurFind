@@ -60,7 +60,7 @@
           {% for booking in bookings %}
           <tr>
             <td>{{ booking.login_id.username }}</td>
-            <td>{{ booking.turf_name }}</td>
+            <td>{{ booking.turf.turf_name }}</td>
             <td>{{ booking.id }}</td>
             <td>{{ booking.payment_status }}</td>
             <td>{{ booking.book_datetime }}</td>
@@ -72,6 +72,19 @@
           {% endfor %}
         </tbody>
       </table>
+
+      <div class="pagination-container">
+      <div class="pagination">
+        <a href="?bookings_page=1">&bull;</a>
+        {% for n in bookings.paginator.page_range %}
+          {% if n == bookings.number %}
+            <a href="?bookings_page={{ n }}" class="active">{{ n }}</a>
+          {% else %}
+            <a href="?bookings_page={{ n }}">{{ n }}</a>
+          {% endif %}
+        {% endfor %}
+        <a href="?bookings_page={{ bookings.paginator.num_pages }}">&bull;</a>
+      </div>
     </section>
 
     <section class="table-container turf-container">
@@ -92,12 +105,19 @@
           {% endfor %}
         </tbody>
       </table>
-    </section>
-  </div>
-</main>
+<div class="pagination-container">
+<div class="pagination">
+  <a href="?turfs_page=1">&bull;</a>
+  {% for n in turfs.paginator.page_range %}
+    {% if n == turfs.number %}
+      <a href="?turfs_page={{ n }}" class="active">{{ n }}</a>
+    {% else %}
+      <a href="?turfs_page={{ n }}">{{ n }}</a>
+    {% endif %}
+  {% endfor %}
+  <a href="?turfs_page={{ turfs.paginator.num_pages }}">&bull;</a>
+</div>
 
-<footer class="footer">
-        <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com</p>
-    </footer>
+
 </body>
 </html>

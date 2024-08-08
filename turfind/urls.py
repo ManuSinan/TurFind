@@ -27,12 +27,11 @@ urlpatterns = [
     path("reguser", views.reguser),
     path("regturfowner", views.regturfowner),
     path("profile", views.profile, name="profile"),
-    path("booking", views.booking),
     path("rehome", views.homeagain, name='rehome'),
     path("addturf/", views.addturf, name="addturf"),
     path('turflist/', views.turflist, name='turflist'),
     path('editurf/<int:id>', views.editurf, name='editurf'),
-    path("review/<int:id>", views.review, name="review"),
+    path("booking/<int:id>", views.booking, name="booking"),
     path("logout/", views.logout,name="logout"),
     path("payment/<int:id>", views.payment, name='payment'),
     path("search", views.search),
@@ -43,10 +42,9 @@ urlpatterns = [
     path('ownerprofile/', views.ownerprofile, name='ownerprofile'),
     path("ownerview/<int:id>", views.ownerview, name="ownerview"),
     path("ownersearch/", views.ownersearch, name="ownersearch"),
-    path("adminlogin", views.adminlogin),
     path("adminhome/", views.adminhome, name='adminhome'),
     path('adminview/<int:id>/', views.adminview, name='adminview'),
-
+    path('addreview/<int:id>/', views.addreview, name="addreview")
 
 ]
 if settings.DEBUG:

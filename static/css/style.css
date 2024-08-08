@@ -43,8 +43,8 @@ body {
             justify-content: center;
             align-items: center;
             flex: 1;
-            margin-top: 50px;
-            margin-bottom: 60px;
+            margin-top: 10px;
+            margin-bottom: 110px;
         }
 
         .login-container {
@@ -62,7 +62,7 @@ body {
         }
 
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -82,7 +82,7 @@ body {
 
         .login-container button[type="submit"] {
             width: 100%;
-            padding: 12px;
+            padding: 8px;
             background-color: #003580;
             border: none;
             border-radius: 10px;
@@ -99,7 +99,7 @@ body {
 
         .login-container .login-prompt {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .login-container .login-prompt a {

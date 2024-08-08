@@ -46,7 +46,31 @@ body {
   margin-left: auto;
   margin-top: -53px;
 }
+.pagination-container {
+  text-align: center;
+}
 
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 4px 12px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #002355;
+  color: white;
+  border-radius: 18px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 18px;
+}
 .logout-button img {
     width:30px;
     height:30px
@@ -107,7 +131,7 @@ body {
   height: 25px;
   margin-left: -5px;
 }
-/* General Styles for Tables */
+
 .tables-container {
   display: flex;
   justify-content: space-between;
@@ -155,7 +179,6 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
-/* Specific Styles for Booking Table */
 .booking-table {
   border-radius: 8px;
   overflow: hidden;
@@ -169,13 +192,11 @@ tr:hover {
   overflow: hidden;
 }
 
-/* Specific Styles for Turf Table */
 .turf-table {
   border-radius: 8px;
   overflow: hidden;
 }
 
-/* Specific Styles for Turf Table */
 .turf-table {
   border-radius: 8px;
   overflow: hidden;
@@ -186,25 +207,15 @@ tr:hover {
 }
 
 .booking-container {
-  flex: 3; /* 60-70% of the width */
+  flex: 3;
   margin-right: 20px;
 }
 .turf-container {
-  flex: 1; /* 30-40% of the width */
+  flex: 1;
 }
-/* Remove default link styling in tables */
+
 .table-container a {
   color: black;
   text-decoration: none;
 }
 
-
-.footer {
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    background-color: #002355;
-    color: #fff;
-    padding: 10px 0;
-    font-size: 12px;
-}
