@@ -114,19 +114,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        // JavaScript to set the min attribute of the datetime-local input to the current date and time
-        document.addEventListener('DOMContentLoaded', function() {
+         document.addEventListener('DOMContentLoaded', function() {
             var now = new Date();
             var year = now.getFullYear();
             var month = ('0' + (now.getMonth() + 1)).slice(-2);
             var day = ('0' + now.getDate()).slice(-2);
-            var hours = ('0' + now.getHours()).slice(-2);
-            var minutes = ('0' + now.getMinutes()).slice(-2);
+            var hours = Math.ceil(now.getHours() / 1) * 1; // Round up to the nearest hour
+            var minutes = '00'; // Set minutes to 00
 
-            var minDate = `${year}-${month}-${day}T${hours}:${minutes}`;
+            var minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
 
-            document.getElementById('day').setAttribute('min', minDate);
+            var input = document.getElementById('day');
+            input.setAttribute('min', minDateTime);
+
+            // Optional: To ensure the input updates correctly
+            input.value = minDateTime;
         });
+
     </script>
 </body>
 </html>
