@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponse
+from django.db import IntegrityError
 from .models import LoginUser, User, Turf, TurfOwner, Booking, Review
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -17,17 +18,27 @@ def reguser(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
-        if LoginUser.objects.filter(username=username, user_type='User').exists():
-            return render(request, 'signup.html', {'message': 'Username already exists'})
-
         if password != confirm_password:
             return render(request, 'signup.html', {'message': 'Passwords do not match'})
 
         try:
-            login_data = LoginUser.objects.create_user(username=username, password=password, user_type='User')
+            if LoginUser.objects.filter(username=username, user_type='User').exists():
+                return render(request, 'signup.html', {'message': 'Username already exists'})
 
+            if User.objects.filter(email=email).exists():
+                return render(request, 'signup.html', {'message': 'Email already in use'})
+
+            if User.objects.filter(phone=phone).exists():
+                return render(request, 'signup.html', {'message': 'Phone number already in use'})
+
+            if password != confirm_password:
+                return render(request, 'signup_turf_owner.html', {'message': 'Passwords do not match'})
+
+            login_data = LoginUser.objects.create_user(username=username, password=password, user_type='User')
             user_data = User.objects.create(login_id=login_data, user_name=username, email=email, phone=phone, password=password)
             return redirect(login)
+        except IntegrityError as e:
+            return render(request, 'signup.html', {'message': 'Username or Email or Phone number already in use'})
         except Exception as e:
             return render(request, 'signup.html', {'message': f'Error occurred: {str(e)}'})
     else:
@@ -41,19 +52,26 @@ def regturfowner(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
-        if LoginUser.objects.filter(username=username, user_type='TurfOwner').exists():
+        if LoginUser.objects.filter(username=username, user_type='User').exists():
             return render(request, 'signup_turf_owner.html', {'message': 'Username already exists'})
+
+        if User.objects.filter(email=email).exists():
+            return render(request, 'signup_turf_owner.html', {'message': 'Email already in use'})
+
+        if User.objects.filter(phone=phone).exists():
+            return render(request, 'signup_turf_owner.html', {'message': 'Phone number already in use'})
 
         if password != confirm_password:
             return render(request, 'signup_turf_owner.html', {'message': 'Passwords do not match'})
-
         try:
             login_data = LoginUser.objects.create_user(username=username, password=password, user_type='TurfOwner')
 
             user_data = TurfOwner.objects.create(owner_id=login_data, user_name=username, email=email, phone=phone, password=password)
             return redirect(login)
+        except IntegrityError as e:
+            return render(request, 'signup_turf_owner.html', {'message': 'Username or Email or Phone number already in use'})
         except Exception as e:
-            return HttpResponse(e)
+            return render(request, 'signup_turf_owner.html', {'message': f'Error occurred: {str(e)}'})
     else:
         return render(request, 'signup_turf_owner.html')
 
@@ -74,7 +92,7 @@ def login(request):
             else:
                 return render(request, 'login.html', {'message': "Unknown user type"})
         else:
-            return render(request, 'login.html', {'message': 'Invalid credentials'})
+            return render(request, 'login.html', {'message': 'Username or password is incorrect'})
     else:
         return render(request, 'login.html')
 
@@ -155,14 +173,14 @@ def editurf(request, id):
 def booking(request, id):
     user = LoginUser.objects.get(id=request.user.id)
     turf = Turf.objects.get(id=id)
-    review = Review.objects.filter(turf=turf)
+    reviews = Review.objects.filter(turf=turf)
     if request.method == 'POST':
         day = request.POST['day']
         booking = Booking.objects.create(login_id=user, book_datetime=day, turf=turf, payment_amount=turf.price)
         booking.save()
         return redirect(payment, id=booking.id)
     else:
-        return render(request, 'review.html', {'turf': turf, 'reviews':review})
+        return render(request, 'review.html', {'turf': turf, 'reviews': reviews})
 
 def logout(request):
     auth_logout(request)
@@ -236,7 +254,7 @@ def ownersearch(request):
 
 def addreview(request,id):
     turf = Turf.objects.get(id=id)
-    all_review = Review.objects.all()
+    all_review = Review.objects.filter(turf=turf)  
     user = LoginUser.objects.get(id=request.user.id)
     if request.method == 'POST':
         rating = request.POST['rate']

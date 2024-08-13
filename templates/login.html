@@ -37,5 +37,36 @@
     <footer class="footer">
         <p>All rights reserved. Copyright (2020 - 2024) - Turfind.com™</p>
     </footer>
+
+    <!-- Modal Structure -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage">Username or password is incorrect.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("errorModal");
+            var span = document.getElementsByClassName("close")[0];
+
+            {% if message %}
+                // Display the modal with the error message
+                modal.style.display = "block";
+                document.getElementById("modalMessage").innerText = "{{ message }}";
+            {% endif %}
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
 </body>
 </html>
